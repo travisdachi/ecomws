@@ -19,23 +19,19 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView(
-        padding: EdgeInsets.all(16),
-        children: <Widget>[
-          //TODO call api
-          //TODO create product widget
-          Placeholder(fallbackHeight: 100),
-          Placeholder(fallbackHeight: 100),
-          Placeholder(fallbackHeight: 100),
-          Placeholder(fallbackHeight: 100),
-          Placeholder(fallbackHeight: 100),
-          Placeholder(fallbackHeight: 100),
-          Placeholder(fallbackHeight: 100),
-          Placeholder(fallbackHeight: 100),
-          Placeholder(fallbackHeight: 100),
-          Placeholder(fallbackHeight: 100),
-          Placeholder(fallbackHeight: 100),
-        ],
+      body: FutureBuilder<List<Product>>(
+        future: getProducts(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Center(child: CircularProgressIndicator());
+          } else {
+            return ListView(
+              padding: EdgeInsets.all(16),
+              children: snapshot.data.map((x) => Text(x.name)).toList(),
+              //TODO create product widget
+            );
+          }
+        },
       ),
     );
   }
