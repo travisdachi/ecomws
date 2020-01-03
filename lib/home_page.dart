@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:ecomws/models.dart';
+import 'package:ecomws/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -27,8 +28,14 @@ class HomePage extends StatelessWidget {
           } else {
             return ListView(
               padding: EdgeInsets.all(16),
-              children: snapshot.data.map((x) => Text(x.name)).toList(),
-              //TODO create product widget
+              children: snapshot.data
+                  .map((x) => ProductCard(
+                        product: x,
+                        onTap: () {
+                          //TODO navigate to product detail
+                        },
+                      ))
+                  .toList(),
             );
           }
         },

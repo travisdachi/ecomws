@@ -27,6 +27,7 @@ dependencies:
   json_serializable: any
   json_annotation: any
   http: any
+  cached_network_image: 2.0.0
 
 dev_dependencies:
   flutter_test:
