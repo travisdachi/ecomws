@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:ecomws/models.dart';
 import 'package:ecomws/product_card.dart';
+import 'package:ecomws/product_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -32,7 +33,7 @@ class HomePage extends StatelessWidget {
                   .map((x) => ProductCard(
                         product: x,
                         onTap: () {
-                          //TODO navigate to product detail
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => ProductDetailPage(product: x)));
                         },
                       ))
                   .toList(),
