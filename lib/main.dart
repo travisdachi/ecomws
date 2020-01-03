@@ -1,4 +1,5 @@
 import 'package:async_redux/async_redux.dart';
+import 'package:ecomws/actions.dart';
 import 'package:ecomws/app_state.dart';
 import 'package:ecomws/home_page.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,12 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final store = Store<AppState>(initialState: AppState.initialState());
+
+  @override
+  void initState() {
+    super.initState();
+    store.dispatch(FetchProductAction());
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecomws/actions.dart';
 import 'package:ecomws/app_state.dart';
+import 'package:ecomws/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider_for_redux/provider_for_redux.dart';
 
@@ -59,18 +60,19 @@ class _CartPageState extends State<CartPage> {
                       onPressed: state.cart.isEmpty
                           ? null
                           : () async {
-                              //TODO check login
-                              setState(() {
-                                isLoading = true;
-                              });
-                              await store.dispatchFuture(CheckoutAction());
-                              setState(() {
-                                isLoading = false;
-                              });
-                              scaffoldKey.currentState.showSnackBar(SnackBar(
-                                backgroundColor: Colors.green,
-                                content: Text('Checkout complete!'),
-                              ));
+                              if (state.isLoggedIn || await LoginPage.login(context)) {
+                                setState(() {
+                                  isLoading = true;
+                                });
+                                await store.dispatchFuture(CheckoutAction());
+                                setState(() {
+                                  isLoading = false;
+                                });
+                                scaffoldKey.currentState.showSnackBar(SnackBar(
+                                  backgroundColor: Colors.green,
+                                  content: Text('Checkout complete!'),
+                                ));
+                              }
                             },
                     ),
                   ),
