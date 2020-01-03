@@ -1,7 +1,10 @@
+import 'package:async_redux/async_redux.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecomws/actions.dart';
 import 'package:ecomws/cart_page.dart';
 import 'package:ecomws/models.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProductDetailPage extends StatefulWidget {
   final Product product;
@@ -95,7 +98,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     return RaisedButton(
                       child: Text('Add to cart (${MaterialLocalizations.of(context).formatDecimal(widget.product.price.toInt())}THB)'),
                       onPressed: () {
-                        //TODO add to cart
+                        Provider.of<Dispatch>(context)(AddToCartAction(widget.product));
                         Scaffold.of(context).showSnackBar(
                           SnackBar(
                             backgroundColor: Colors.green,
