@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecomws/cart_page.dart';
 import 'package:ecomws/models.dart';
 import 'package:flutter/material.dart';
 
@@ -104,7 +105,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                               label: 'View Cart',
                               onPressed: () {
                                 Navigator.pop(context);
-                                //TODO navigate to cart page
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage()));
                               },
                             ),
                           ),

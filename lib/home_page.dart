@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:ecomws/cart_page.dart';
 import 'package:ecomws/models.dart';
 import 'package:ecomws/product_card.dart';
 import 'package:ecomws/product_detail_page.dart';
@@ -16,7 +17,7 @@ class HomePage extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.shopping_cart),
             onPressed: () {
-              //TODO navigate to cart page
+              Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage()));
             },
           ),
         ],
