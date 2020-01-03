@@ -28,6 +28,9 @@ dependencies:
   json_annotation: any
   http: any
   cached_network_image: 2.0.0
+  async_redux: any
+  provider_for_redux: any
+  provider: any
 
 dev_dependencies:
   flutter_test:

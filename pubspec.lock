@@ -36,6 +36,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.4.0"
+  async_redux:
+    dependency: "direct main"
+    description:
+      name: async_redux
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.4.2"
   boolean_selector:
     dependency: transitive
     description:
@@ -368,6 +375,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.4.0"
+  provider:
+    dependency: "direct main"
+    description:
+      name: provider
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.2.0"
+  provider_for_redux:
+    dependency: "direct main"
+    description:
+      name: provider_for_redux
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.6"
   pub_semver:
     dependency: transitive
     description:

@@ -41,3 +41,25 @@ class Product {
   @override
   int get hashCode => id.hashCode ^ name.hashCode ^ brand.hashCode ^ os.hashCode ^ imageUrl.hashCode ^ price.hashCode;
 }
+
+class CartItem {
+  final Product product;
+  final int amount;
+
+  const CartItem({
+    @required this.product,
+    @required this.amount,
+  });
+
+  CartItem copyWith({
+    Product product,
+    int amount,
+  }) {
+    return CartItem(
+      product: product ?? this.product,
+      amount: amount ?? this.amount,
+    );
+  }
+
+  int get total => amount * product.price.toInt();
+}
