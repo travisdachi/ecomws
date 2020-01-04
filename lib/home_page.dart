@@ -5,9 +5,13 @@ import 'package:ecomws/login_page.dart';
 import 'package:ecomws/product_card.dart';
 import 'package:ecomws/product_detail_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider_for_redux/provider_for_redux.dart';
 
 class HomePage extends StatelessWidget {
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+  static const kotlin_shared = const MethodChannel('kotlin_shared');
+
   @override
   Widget build(BuildContext context) {
     return ReduxConsumer<AppState>(
@@ -29,6 +33,7 @@ class HomePage extends StatelessWidget {
           );
         }
         return Scaffold(
+          key: scaffoldKey,
           appBar: AppBar(
             title: Text('Mobile Shop'),
             actions: <Widget>[
@@ -56,6 +61,10 @@ class HomePage extends StatelessWidget {
                         value: 'logout',
                       ),
                     ],
+                    PopupMenuItem(
+                      child: Text('Greet from Kotlin'),
+                      value: 'greet',
+                    ),
                   ];
                 },
                 onSelected: (menu) {
@@ -66,6 +75,9 @@ class HomePage extends StatelessWidget {
                     case 'logout':
                       store.dispatch(LogoutAction());
                       break;
+                    case 'greet':
+                      greetFromKotlin();
+                      break;
                   }
                 },
               )
@@ -75,5 +87,12 @@ class HomePage extends StatelessWidget {
         );
       },
     );
+  }
+
+  Future<void> greetFromKotlin() async {
+    final greetMessage = await kotlin_shared.invokeMethod('greet');
+    scaffoldKey.currentState.showSnackBar(SnackBar(
+      content: Text(greetMessage),
+    ));
   }
 }
